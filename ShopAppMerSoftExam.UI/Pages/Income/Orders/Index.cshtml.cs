@@ -1,40 +1,40 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
 using ShopAppMerSoftExam.Core;
 using ShopAppMerSoftExam.Core.Entities;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace ShopAppMerSoftExam.UI.Pages.Directory
+namespace ShopAppMerSoftExam.UI.Pages.Income.Orders
 {
     public class IndexModel : PageModel
     {
-        private readonly IGrupeRepasitory _grupeRepasitory;
-        public IndexModel(IGrupeRepasitory grupeRepasitory)
+        private readonly IOrderRepasitory _orderRepasitory;
+        public IndexModel(IOrderRepasitory orderRepasitory)
 
         {
-            _grupeRepasitory = grupeRepasitory;
+            _orderRepasitory = orderRepasitory;
             InputList = new List<InputModel>();
         }
 
 
         public List<InputModel> InputList = new List<InputModel>();
-        public List<Grup> GrupList { get; set; }
-        public class InputModel : Grup { }
+        public List<Order> OrderList { get; set; }
+        public class InputModel : Order { }
 
 
         protected void PrepareData()
         {
-            var grupeList = _grupeRepasitory.GetAll().ToList();
+            var orderList = _orderRepasitory.GetAll().ToList();
 
-            
 
-            InputList = grupeList.Select(p =>
+
+            InputList = orderList.Select(p =>
             {
                 return new InputModel()
                 {
                     Id = p.Id,
-                    Code = p.Code,
+                    Number = p.Number,
                     Name = p.Name,
                 };
             }).ToList();

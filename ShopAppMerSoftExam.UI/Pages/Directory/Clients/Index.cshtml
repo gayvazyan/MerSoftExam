@@ -1,15 +1,17 @@
 ﻿@page
-@model ShopAppMerSoftExam.UI.Pages.Directory.Products.IndexModel
+@model ShopAppMerSoftExam.UI.Pages.Directory.Clients.IndexModel
+
+
 
 @{
-    ViewData["Title"] = "Ապրանքներ";
+    ViewData["Title"] = "Գնորդներ";
 }
 
 <form method="post" id="form">
     <div class="card margin-top-20">
         @* ----- START Toolbar ---- *@
         <div class="card-header" style="padding:5px;">
-            <a href="/Directory/Products/Create" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
+            <a href="/Directory/Clients/Create" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
         </div>
 
         @* ----- END Toolbar ---- *@
@@ -20,8 +22,9 @@
                 <thead>
                     <tr style="text-align:center;color:black">
                         <td><b>Կոդ</b></td>
-                        <td><b>Խումբ</b></td>
-                        <td><b>Անվանում</b></td>
+                        <td><b>Անուն</b></td>
+                        <td><b>Ազգանուն</b></td>
+                        <td><b>Զեղչ</b></td>
                         <td class="commands"><b>Հրամաններ</b></td>
                     </tr>
                 </thead>
@@ -30,15 +33,16 @@
                     {
                         <tr style="text-align:center;color:black">
                             <td>@item.Code</td>
-                            <td>@item.GrupeName</td>
-                            <td>@item.Name</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Discount</td>
                             <td style="min-width:200px" class="commands">
 
-                                    <a class="btn btn-info text-white" href="/Directory/Products/Update/@item.Id" title="Թարմացնել">
+                                    <a class="btn btn-info text-white" href="/Directory/Clients/Update/@item.Id" title="Թարմացնել">
                                         <i class="nav-icon icon-pencil"></i>
                                     </a>
 
-                                    <a class="btn btn-danger" href="/Directory/Products/Delete/@item.Id" title="Հեռացնել">
+                                    <a class="btn btn-danger" href="/Directory/Clients/Delete/@item.Id" title="Հեռացնել">
                                         <i class="nav-icon icon-trash"></i>
                                     </a>
                                 </td>
@@ -50,4 +54,5 @@
         @* ----- END Grid ---- *@
     </div>
 </form>
+
 

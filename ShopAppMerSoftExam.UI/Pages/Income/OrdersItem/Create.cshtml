@@ -1,0 +1,94 @@
+﻿@page "{id:int}"
+@model ShopAppMerSoftExam.UI.Pages.Income.OrdersItem.CreateModel
+
+
+@{
+     ViewData["Title"] = "Ավելացնել";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.OrderId" />
+        <div class="card card-input">
+            <div class="card-body p-0 d-flex align-items-center">
+                <i class="nav-icon icon-check bg-success p-4 px-5 font-2xl mr-3 text-white"></i>
+                <div>
+                    <div class="text-value-sm text-info">@ViewData["Title"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body row">
+                <div class="m-3 p-3 w-100" style="max-width:900px">
+                    <div>
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach (var error in Model.Errors)
+                                    {
+                                        <li>@error.Code: @error.Description</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="text-info" asp-for="Create.ProductId">Ապրանքի անվանում</label>
+                           <select class="form-control" asp-for="Create.ProductId">
+                                <option value="">-- ընտրել --</option>
+                                @foreach (var item in Model.Products)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Create.Count">Քանակ</label>
+                            <input class="form-control" type="text" asp-for="Create.Count">
+                            <span asp-validation-for="Create.Count" class="text-danger"></span>
+                        </div>
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Create.Price">Գին</label>
+                            <input class="form-control" type="number" asp-for="Create.Price">
+                            <span asp-validation-for="Create.Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="text-info" asp-for="Create.Overhead">Վերադիր %</label>
+                            <input class="form-control" type="number" asp-for="Create.Overhead">
+                            <span asp-validation-for="Create.Overhead" class="text-danger"></span>
+                        </div>
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Create.SalePrice">Վաճառքի գին</label>
+                            <input class="form-control" type="number" asp-for="Create.SalePrice">
+                            <span asp-validation-for="Create.SalePrice" class="text-danger"></span>
+                        </div>
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Create.ValideDate">Պիտ․ ժամկետ</label>
+                            <input class="form-control" type="date" asp-for="Create.ValideDate">
+                            <span asp-validation-for="Create.ValideDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+
+                   
+                  
+
+                    <div style="height:20px"></div>
+                    <div class="row border-top margin-top-20" style="padding-top:20px">
+                        <div class="col-12">
+                            <button class="btn btn-success text-white"> <i class="nav-icon icon-check"></i> Ստեղծել</button>
+                            <a class="btn btn-secondary" asp-page="/Income/OrdersItem/Index"> <i class="nav-icon icon-close"></i> Չեղարկել</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

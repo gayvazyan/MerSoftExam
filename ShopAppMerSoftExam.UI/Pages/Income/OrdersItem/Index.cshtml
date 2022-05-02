@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model ShopAppMerSoftExam.UI.Pages.Income.OrdersItem.IndexModel
+@{
+    ViewData["Title"] = "Ապրանքների ցանկ";
+}
+
+<form method="post" id="form">
+    <div class="card margin-top-20">
+        @* ----- START Toolbar ---- *@
+        <div class="card-header" style="padding:5px;">
+            <a href="/Income/OrdersItem/Create/@Model.OrderId" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
+        </div>
+
+        @* ----- END Toolbar ---- *@
+
+        @* ----- START Grid ---- *@
+        <div class="grid card-body p-0">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr style="text-align:center;color:black">
+                        <td><b>Ապրանքի անվանում</b></td>
+                        <td><b>Քանակ</b></td>
+                        <td><b>Գին</b></td>
+                        <td><b>Գումար</b></td>
+                        <td><b>Վերադիր %</b></td>
+                        <td><b>Վաճառքի գին</b></td>
+                        <td><b>Պիտ․ ժամկետ</b></td>
+                        <td class="commands"><b>Հրամաններ</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InputList)
+                    {
+                        <tr style="text-align:center;color:black">
+                            <td>@item.ProductName</td>
+                            <td>@item.Count</td>
+                            <td>@item.Price</td>
+                            <td>@item.Sum</td>
+                            <td>@item.Overhead</td>
+                            <td>@item.SalePrice</td>
+                            <td>@item.ValideDate</td>
+                            <td style="min-width:200px" class="commands">
+
+                                    <a class="btn btn-info text-white" href="/Income/OrdersItem/Update/@item.Id" title="Թարմացնել">
+                                        <i class="nav-icon icon-pencil"></i>
+                                    </a>
+
+                                    <a class="btn btn-danger" href="/Income/OrdersItem/Delete/@item.Id" title="Հեռացնել">
+                                        <i class="nav-icon icon-trash"></i>
+                                    </a>
+                                </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @* ----- END Grid ---- *@
+    </div>
+</form>

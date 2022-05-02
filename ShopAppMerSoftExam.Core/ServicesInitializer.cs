@@ -24,6 +24,10 @@ namespace ShopAppMerSoftExam.Core
             services.AddTransient(typeof(IRepositories<>), typeof(Repositories<>));
             services.AddTransient<IGrupeRepasitory, GrupeRepasitory>();
             services.AddTransient<IProductRepasitory, ProductRepasitory>();
+            services.AddTransient<IClientRepasitory, ClientRepasitory>();
+            services.AddTransient<ISaleRepasitory, SaleRepasitory>();
+            services.AddTransient<IOrderRepasitory, OrderRepasitory>();
+            services.AddTransient<IOrderItemRepasitory, OrderItemRepasitory>();
 
         }
     }
