@@ -28,6 +28,6 @@ namespace ShopAppMerSoftExam.Core.Entities
 
         public int SalePrice { get; set; }
         public int DiscountedPrice { get; set; }
-        public DateTime ValideDate { get; set; }
+        public int Price { get; set; }
     }
 }
