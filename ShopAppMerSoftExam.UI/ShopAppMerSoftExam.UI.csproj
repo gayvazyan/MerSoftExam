@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>39d0767e-569e-4665-8685-d0b8d9dd7d95</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopAppMerSoftExam.Core\ShopAppMerSoftExam.Core.csproj" />
+  </ItemGroup>
+
+</Project>
