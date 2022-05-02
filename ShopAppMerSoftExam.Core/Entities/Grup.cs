@@ -11,7 +11,10 @@ namespace ShopAppMerSoftExam.Core.Entities
     public class Grup
     {
         [Key]
-        public int Code { get; set; }
+        public int Id { get; set; } 
+        [Required]
+        [StringLength(255)]
+        public string Code { get; set; }
 
         [Required]
         [StringLength(255)]

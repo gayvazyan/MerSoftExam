@@ -1,5 +1,6 @@
 ﻿@page
-@model ShopAppMerSoftExam.UI.Pages.Directory.Grupe.CreateModel
+@model ShopAppMerSoftExam.UI.Pages.Directory.Products.CreateModel
+
 @{
      ViewData["Title"] = "Ավելացնել";
 }
@@ -38,6 +39,16 @@
                             <span asp-validation-for="Create.Code" class="text-danger"></span>
                         </div>
                          <div class="col-4">
+                            <label class="text-info" asp-for="Create.GrupId">Խումբ</label>
+                           <select class="form-control" asp-for="Create.GrupId">
+                                <option value="">-- ընտրել --</option>
+                                @foreach (var item in Model.Grupes)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                         <div class="col-4">
                             <label class="text-info" asp-for="Create.Name">Անվանում</label>
                             <input class="form-control" type="text" asp-for="Create.Name">
                             <span asp-validation-for="Create.Name" class="text-danger"></span>
@@ -52,7 +63,7 @@
                     <div class="row border-top margin-top-20" style="padding-top:20px">
                         <div class="col-12">
                             <button class="btn btn-success text-white"> <i class="nav-icon icon-check"></i> Ստեղծել</button>
-                            <a class="btn btn-secondary" asp-page="/Directory/Grupe/Index"> <i class="nav-icon icon-close"></i> Չեղարկել</a>
+                            <a class="btn btn-secondary" asp-page="/Directory/Products/Index"> <i class="nav-icon icon-close"></i> Չեղարկել</a>
                         </div>
                     </div>
                 </div>

@@ -1,25 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopAppMerSoftExam.Core;
 using ShopAppMerSoftExam.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
+namespace ShopAppMerSoftExam.UI.Pages.Directory.Products
 {
     public class CreateModel : PageModel
     {
+        private readonly IProductRepasitory _productRepasitory;
         private readonly IGrupeRepasitory _grupeRepasitory;
-        public CreateModel(IGrupeRepasitory grupeRepasitory)
+        public CreateModel(IProductRepasitory productRepasitory,
+                           IGrupeRepasitory grupeRepasitory)
         {
+            _productRepasitory = productRepasitory;
             _grupeRepasitory = grupeRepasitory;
-            Create = new CreateGrupeModel();
+            Create = new CreateProductModel();
+            Grupes = new List<SelectListItem>();
         }
 
-        public class CreateGrupeModel
+        public class CreateProductModel
         {
-            public int  Id { get; set; }   
+            public int Id { get; set; }
 
             [Required(ErrorMessage = "Կոդը պարտադիր է")]
             public string Code { get; set; }
@@ -27,10 +32,15 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
             [Required(ErrorMessage = "Անվանումը պարտադիր է")]
             public string Name { get; set; }
 
+            [Required(ErrorMessage = "Դաշտը պարտադիր է")]
+            public int GrupId { get; set; }
+
         }
 
         [BindProperty]
-        public CreateGrupeModel Create { get; set; }
+        public CreateProductModel Create { get; set; }
+
+        public List<SelectListItem> Grupes { get; set; }
 
 
         private List<ServiceError> _errors;
@@ -41,6 +51,17 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
         }
         public void OnGet()
         {
+            var grupLis = _grupeRepasitory.GetAll();
+
+            foreach (var grup in grupLis)
+            {
+                var item = new SelectListItem()
+                {
+                    Text = grup.Name,
+                    Value = grup.Id.ToString()
+                };
+                Grupes.Add(item);
+            }
         }
 
         public ActionResult OnPost()
@@ -49,17 +70,17 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
             {
                 try
                 {
-                    var grup = new Grup
+                    var product = new Product
                     {
                         Code = Create.Code,
-                        Name = Create.Name
-                        
+                        Name = Create.Name,
+                        GrupId = Create.GrupId
                     };
 
-                    var result = _grupeRepasitory.Insert(grup);
+                    var result = _productRepasitory.Insert(product);
 
                     if (result != null)
-                        return RedirectToPage("/Directory/Grupe/Index");
+                        return RedirectToPage("/Directory/Products/Index");
 
                 }
                 catch (Exception ex)

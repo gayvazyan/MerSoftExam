@@ -16,9 +16,5 @@
     <ProjectReference Include="..\ShopAppMerSoftExam.Core\ShopAppMerSoftExam.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Directory\Product\" />
-  </ItemGroup>
-
 
 </Project>

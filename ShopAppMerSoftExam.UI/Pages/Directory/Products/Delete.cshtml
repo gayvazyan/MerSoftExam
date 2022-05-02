@@ -1,13 +1,16 @@
 ﻿@page "{id:int}"
-@model ShopAppMerSoftExam.UI.Pages.Directory.Grupe.DeleteModel
+@model ShopAppMerSoftExam.UI.Pages.Directory.Products.DeleteModel
+
+
 @{
        ViewData["Title"] = "Հեռացնել";
 }
 
  <form method="post">
         <input type="hidden" asp-for="@Model.Delete.Id" value="@Model.Delete.Id" />
-        <input type="hidden" asp-for="@Model.Delete.Code" value="@Model.Delete.Code" />
         <input type="hidden" asp-for="@Model.Delete.Name" value="@Model.Delete.Name" />
+        <input type="hidden" asp-for="@Model.Delete.Code" value="@Model.Delete.Code" />
+        <input type="hidden" asp-for="@Model.Delete.GrupId" value="@Model.Delete.GrupId" />
         <div class="card card-input">
             <div class="card-body p-0 d-flex align-items-center">
                 <i class="nav-icon icon-trash bg-danger p-4 px-5 font-2xl mr-3 text-white"></i>
@@ -65,7 +68,7 @@
                     <div class="row border-top margin-top-20" style="padding-top:20px">
                         <div class="col-12">
                             <button type="submit" class="btn btn-danger"><i class="nav-icon icon-trash"></i> Հեռացնել</button>
-                            <a class="btn btn-secondary" asp-page="/Directory/Grupe/Index"><i class="nav-icon icon-close"></i> Չեղարկել</a>
+                            <a class="btn btn-secondary" asp-page="/Directory/Products/Index"><i class="nav-icon icon-close"></i> Չեղարկել</a>
                         </div>
                     </div>
                 </div>

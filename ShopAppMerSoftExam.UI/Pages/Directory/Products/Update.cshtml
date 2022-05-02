@@ -1,5 +1,7 @@
 ﻿@page "{id:int}"
-@model ShopAppMerSoftExam.UI.Pages.Directory.Grupe.UpdateModel
+@model ShopAppMerSoftExam.UI.Pages.Directory.Products.UpdateModel
+
+
 @{
      ViewData["Title"] = "Թարմացնել";
 }
@@ -39,6 +41,16 @@
                             <span asp-validation-for="Update.Code" class="text-danger"></span>
                         </div>
                          <div class="col-4">
+                            <label class="text-info" asp-for="Update.GrupId">Խումբ</label>
+                           <select class="form-control" asp-for="Update.GrupId">
+                                <option value="">-- ընտրել --</option>
+                                @foreach (var item in Model.Grupes)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                         <div class="col-4">
                             <label class="text-info" asp-for="Update.Name">Անվանում</label>
                             <input class="form-control" type="text" asp-for="Update.Name">
                             <span asp-validation-for="Update.Name" class="text-danger"></span>
@@ -51,7 +63,7 @@
                     <div class="row border-top margin-top-20" style="padding-top:20px">
                         <div class="col-12">
                             <button class="btn btn-primary text-white"><i class="cil-sync"></i> Թարմացնել</button>
-                            <a class="btn btn-secondary" asp-page="/Directory/Grupe/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
+                            <a class="btn btn-secondary" asp-page="/Directory/Products/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
                         </div>
                     </div>
                 </div>

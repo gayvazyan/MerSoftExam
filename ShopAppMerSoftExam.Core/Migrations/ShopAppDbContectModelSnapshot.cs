@@ -20,38 +20,49 @@ namespace ShopAppMerSoftExam.Core.Migrations
 
             modelBuilder.Entity("ShopAppMerSoftExam.Core.Entities.Grup", b =>
                 {
-                    b.Property<int>("Code")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("Code");
+                    b.HasKey("Id");
 
                     b.ToTable("GrupDb");
                 });
 
             modelBuilder.Entity("ShopAppMerSoftExam.Core.Entities.Product", b =>
                 {
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("GrupCode")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("GrupCode");
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("GrupId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("Code");
+                    b.HasKey("Id");
 
-                    b.HasIndex("GrupCode");
+                    b.HasIndex("GrupId");
 
                     b.ToTable("ProductDb");
                 });
@@ -60,7 +71,7 @@ namespace ShopAppMerSoftExam.Core.Migrations
                 {
                     b.HasOne("ShopAppMerSoftExam.Core.Entities.Grup", "Grup")
                         .WithMany()
-                        .HasForeignKey("GrupCode")
+                        .HasForeignKey("GrupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

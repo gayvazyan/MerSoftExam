@@ -18,9 +18,6 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory
         }
 
 
-        [BindProperty]
-        public InputModel Input { get; set; }
-
         public List<InputModel> InputList = new List<InputModel>();
         public List<Grup> GrupList { get; set; }
         public class InputModel : Grup { }
@@ -36,6 +33,7 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory
             {
                 return new InputModel()
                 {
+                    Id = p.Id,
                     Code = p.Code,
                     Name = p.Name,
                 };

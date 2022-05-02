@@ -5,21 +5,21 @@ using ShopAppMerSoftExam.Core.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
+namespace ShopAppMerSoftExam.UI.Pages.Directory.Products
 {
     public class DeleteModel : PageModel
     {
-        private readonly IGrupeRepasitory _grupeRepasitory;
-        public DeleteModel(IGrupeRepasitory grupeRepasitory)
+        private readonly IProductRepasitory _productRepasitory;
+        public DeleteModel(IProductRepasitory productRepasitory)
         {
-            _grupeRepasitory = grupeRepasitory;
-            Delete = new DeleteGrupModel();
+            _productRepasitory = productRepasitory;
+            Delete = new DeleteProductModel();
         }
 
-        public class DeleteGrupModel : Grup { }
+        public class DeleteProductModel : Product { }
 
         [BindProperty]
-        public DeleteGrupModel Delete { get; set; }
+        public DeleteProductModel Delete { get; set; }
 
 
         private List<ServiceError> _errors;
@@ -30,13 +30,14 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
         }
         protected void PrepareData(int id)
         {
-            var result = _grupeRepasitory.GetByID(id);
+            var result = _productRepasitory.GetByID(id);
 
             if (result != null)
-            { 
+            {
                 Delete.Id = result.Id;
                 Delete.Code = result.Code;
                 Delete.Name = result.Name;
+                Delete.GrupId = result.GrupId;
             }
         }
 
@@ -51,11 +52,11 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
             {
                 try
                 {
-                    var grup = _grupeRepasitory.GetByID(Delete.Id);
+                    var grup = _productRepasitory.GetByID(Delete.Id);
 
-                    _grupeRepasitory.Delete(grup);
+                    _productRepasitory.Delete(grup);
 
-                    return RedirectToPage("/Directory/Grupe/Index");
+                    return RedirectToPage("/Directory/Products/Index");
 
                 }
                 catch (Exception ex)

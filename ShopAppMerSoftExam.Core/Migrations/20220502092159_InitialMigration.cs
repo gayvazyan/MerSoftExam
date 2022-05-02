@@ -10,38 +10,41 @@ namespace ShopAppMerSoftExam.Core.Migrations
                 name: "GrupDb",
                 columns: table => new
                 {
-                    Code = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GrupDb", x => x.Code);
+                    table.PrimaryKey("PK_GrupDb", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ProductDb",
                 columns: table => new
                 {
-                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    GrupCode = table.Column<int>(type: "int", nullable: false)
+                    GrupId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductDb", x => x.Code);
+                    table.PrimaryKey("PK_ProductDb", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductDb_GrupDb_GrupCode",
-                        column: x => x.GrupCode,
+                        name: "FK_ProductDb_GrupDb_GrupId",
+                        column: x => x.GrupId,
                         principalTable: "GrupDb",
-                        principalColumn: "Code",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductDb_GrupCode",
+                name: "IX_ProductDb_GrupId",
                 table: "ProductDb",
-                column: "GrupCode");
+                column: "GrupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,24 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopAppMerSoftExam.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
+namespace ShopAppMerSoftExam.UI.Pages.Directory.Products
 {
     public class UpdateModel : PageModel
     {
-        private readonly IGrupeRepasitory _grupeRepasitory;
-        public UpdateModel(IGrupeRepasitory grupeRepasitory)
 
+        private readonly IProductRepasitory _productRepasitory;
+        private readonly IGrupeRepasitory _grupeRepasitory;
+        public UpdateModel(IProductRepasitory productRepasitory,
+                           IGrupeRepasitory grupeRepasitory)
         {
+            _productRepasitory = productRepasitory;
             _grupeRepasitory = grupeRepasitory;
-            Update = new UpdateGrupeModel();
+            Update = new UpdateProductModel();
+            Grupes = new List<SelectListItem>();
         }
 
 
-        public class UpdateGrupeModel
+        public class UpdateProductModel
         {
             public int Id { get; set; }
 
@@ -27,10 +32,15 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
 
             [Required(ErrorMessage = "Անվանումը պարտադիր է")]
             public string Name { get; set; }
+
+            [Required(ErrorMessage = "Դաշտը պարտադիր է")]
+            public int GrupId { get; set; }
         }
 
         [BindProperty]
-        public UpdateGrupeModel Update { get; set; }
+        public UpdateProductModel Update { get; set; }
+
+        public List<SelectListItem> Grupes { get; set; }
 
         private List<ServiceError> _errors;
         public List<ServiceError> Errors
@@ -41,14 +51,29 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
 
         protected void PrepareData(int id)
         {
-            var result = _grupeRepasitory.GetByID(id);
+           
+            
+            var result = _productRepasitory.GetByID(id);
 
             if (result != null)
             {
-               
+
                 Update.Id = result.Id;
                 Update.Code = result.Code;
                 Update.Name = result.Name;
+                Update.GrupId = result.GrupId;
+            }
+
+            var grupLis = _grupeRepasitory.GetAll();
+
+            foreach (var grup in grupLis)
+            {
+                var item = new SelectListItem()
+                {
+                    Text = grup.Name,
+                    Value = grup.Id.ToString()
+                };
+                Grupes.Add(item);
             }
         }
         public void OnGet(int id)
@@ -62,15 +87,16 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Grupe
             {
                 try
                 {
-                    var grup = _grupeRepasitory.GetByID(Update.Id);
+                    var product = _productRepasitory.GetByID(Update.Id);
 
-                    grup.Code = Update.Code;
-                    grup.Name = Update.Name;
+                    product.Code = Update.Code;
+                    product.Name = Update.Name;
+                    product.GrupId = Update.GrupId;
 
 
-                    _grupeRepasitory.Update(grup);
+                    _productRepasitory.Update(product);
 
-                    return RedirectToPage("/Directory/Grupe/Index");
+                    return RedirectToPage("/Directory/Products/Index");
                 }
                 catch (Exception ex)
                 {

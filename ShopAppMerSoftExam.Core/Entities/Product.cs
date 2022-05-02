@@ -11,16 +11,19 @@ namespace ShopAppMerSoftExam.Core.Entities
     public class Product
     {
         [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(255)]
         public string Code { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Column("GrupCode")]
-        public int GrupCode { get; set; }
+        public int GrupId { get; set; }
 
-        [ForeignKey(nameof(GrupCode))]
+        [ForeignKey(nameof(GrupId))]
         public virtual Grup Grup { get; set; }
     }
 }
