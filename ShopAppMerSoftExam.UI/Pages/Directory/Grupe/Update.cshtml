@@ -1,0 +1,60 @@
+﻿@page "{id:int}"
+@model ShopAppMerSoftExam.UI.Pages.Directory.Grupe.UpdateModel
+@{
+     ViewData["Title"] = "Թարմացնել";
+}
+
+ <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Update.Code" />
+        <div class="card card-input">
+            <div class="card-body p-0 d-flex align-items-center">
+                <i class="cil-sync bg-primary p-4 px-5 font-2xl mr-3 text-white"></i>
+                <div>
+                    <div class="text-value-sm text-info">@ViewData["Title"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body row">
+                <div class="m-3 p-3 w-100" style="max-width:900px">
+                    <div>
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach (var error in Model.Errors)
+                                    {
+                                        <li>@error.Code: @error.Description</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="row">
+                       @* <div class="col-4">
+                            <label class="text-info" asp-for="Update.Code">Կոդ</label>
+                            <input class="form-control" type="text" asp-for="Update.Code">
+                            <span asp-validation-for="Update.Code" class="text-danger"></span>
+                        </div>*@
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Update.Name">Անվանում</label>
+                            <input class="form-control" type="text" asp-for="Update.Name">
+                            <span asp-validation-for="Update.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+
+                    
+                    <div style="height:20px"></div>
+                    <div class="row border-top margin-top-20" style="padding-top:20px">
+                        <div class="col-12">
+                            <button class="btn btn-primary text-white"><i class="cil-sync"></i> Թարմացնել</button>
+                            <a class="btn btn-secondary" asp-page="/Directory/Grupe/Index"><i class="cil-x-circle"></i> Չեղարկել</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

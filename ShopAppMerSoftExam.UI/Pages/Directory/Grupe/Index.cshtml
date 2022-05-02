@@ -1,0 +1,49 @@
+﻿@page
+@model ShopAppMerSoftExam.UI.Pages.Directory.IndexModel
+@{
+    ViewData["Title"] = "Խմբեր";
+}
+
+<form method="post" id="form">
+    <div class="card margin-top-20">
+        @* ----- START Toolbar ---- *@
+        <div class="card-header" style="padding:5px;">
+            <a href="/Directory/Grupe/Create" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
+        </div>
+
+        @* ----- END Toolbar ---- *@
+
+        @* ----- START Grid ---- *@
+        <div class="grid card-body p-0">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr style="text-align:center;color:black">
+                        <td><b>Կոդ</b></td>
+                        <td><b>Անվանում</b></td>
+                        <td class="commands"><b>Հրամաններ</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InputList)
+                    {
+                        <tr style="text-align:center;color:black">
+                            <td>@item.Code</td>
+                            <td>@item.Name</td>
+                            <td style="min-width:200px" class="commands">
+
+                                    <a class="btn btn-info text-white" href="/Directory/Grupe/Update/@item.Code" title="Թարմացնել">
+                                        <i class="nav-icon icon-pencil"></i>
+                                    </a>
+
+                                    <a class="btn btn-danger" href="/Directory/Grupe/Delete/@item.Code" title="Հեռացնել">
+                                        <i class="nav-icon icon-trash"></i>
+                                    </a>
+                                </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @* ----- END Grid ---- *@
+    </div>
+</form>

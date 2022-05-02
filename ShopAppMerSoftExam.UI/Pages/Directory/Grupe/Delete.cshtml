@@ -1,0 +1,73 @@
+﻿@page "{id:int}"
+@model ShopAppMerSoftExam.UI.Pages.Directory.Grupe.DeleteModel
+@{
+       ViewData["Title"] = "Հեռացնել";
+}
+
+ <form method="post">
+        <input type="hidden" asp-for="@Model.Delete.Code" value="@Model.Delete.Code" />
+        <input type="hidden" asp-for="@Model.Delete.Name" value="@Model.Delete.Name" />
+        <div class="card card-input">
+            <div class="card-body p-0 d-flex align-items-center">
+                <i class="nav-icon icon-trash bg-danger p-4 px-5 font-2xl mr-3 text-white"></i>
+                <div>
+                    <div class="text-value-sm text-info">@ViewData["Title"]</div>
+                    <div class="text-muted font-weight-bold small"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body row">
+                <div class="m-3 p-3" style="min-width:600px">
+                    <div>
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach (var error in Model.Errors)
+                                    {
+                                        <li>@error.Code: @error.Description</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <table class="table table-responsive-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Կոդ</th>
+                                    <th>Անվանում</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th><span class="w-100 text-muted text-value-sm font-weight-bold font-lg">@Model.Delete.Code  </span></th>
+                                    <th><span class="w-100 text-muted text-value-sm font-weight-bold font-lg">@Model.Delete.Name  </span></th>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="card">
+                            <div class="card-body p-0 d-flex align-items-center">
+                                <i class="nav-icon icon-fire bg-danger p-4 font-2xl mr-3 text-white"></i>
+                                <div>
+                                    <div class="text-muted font-weight-bold">Տվյալները կհեռացվի ընդմիշտ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="height:20px"></div>
+                    <div class="row border-top margin-top-20" style="padding-top:20px">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-danger"><i class="nav-icon icon-trash"></i> Հեռացնել</button>
+                            <a class="btn btn-secondary" asp-page="/Directory/Grupe/Index"><i class="nav-icon icon-close"></i> Չեղարկել</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

@@ -6,7 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ShopAppMerSoftExam.Core\ShopAppMerSoftExam.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Directory\Product\" />
+  </ItemGroup>
+
 
 </Project>

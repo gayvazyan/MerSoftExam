@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShopAppMerSoftExam.Core.Entities;
+using ShopAppMerSoftExam.Core.Repository;
 
 namespace ShopAppMerSoftExam.Core
 {
@@ -20,9 +21,10 @@ namespace ShopAppMerSoftExam.Core
 
         public static void ConfigureServices(IServiceCollection services)
         {
-            //services.AddTransient(typeof(IRepositories<>), typeof(Repositories<>));
-            //services.AddTransient<IProductRepasitory, ProductRepasitory>();
-            
+            services.AddTransient(typeof(IRepositories<>), typeof(Repositories<>));
+            services.AddTransient<IGrupeRepasitory, GrupeRepasitory>();
+            services.AddTransient<IProductRepasitory, ProductRepasitory>();
+
         }
     }
 }

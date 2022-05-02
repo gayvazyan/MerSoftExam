@@ -15,7 +15,8 @@ namespace ShopAppMerSoftExam.Core.Entities
         }
 
        
-        //public DbSet<Product> ProductDb { get; set; }
+        public DbSet<Grup> GrupDb { get; set; }
+        public DbSet<Product> ProductDb { get; set; }
 
     }
 }
