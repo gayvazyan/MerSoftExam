@@ -11,23 +11,17 @@ namespace ShopAppMerSoftExam.Core.Entities
     public class Sale
     {
         [Key]
-        public int Id { get; set; } 
+        public int Id { get; set; }
 
-        public int ProductId { get; set; }
+        public string ChekNumber { get; set; }
 
-        [ForeignKey(nameof(ProductId))]
-        public virtual OrderItem OrderItem { get; set; }
-
-        public int Count { get; set; }
-
-        public int SalePrice { get; set; }
-        public int DiscountedPrice { get; set; }
-        public int ChekNumber { get; set; }
-        public int Overhead { get; set; }
         public int ClientId { get; set; }
 
         [ForeignKey(nameof(ClientId))]
         public virtual Client Client { get; set; }
         public DateTime ValideDate { get; set; }
+
+        public int ClientDiscounte { get; set; }
+       
     }
 }

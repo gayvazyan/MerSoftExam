@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopAppMerSoftExam.Core.Entities;
 
 namespace ShopAppMerSoftExam.Core.Migrations
 {
     [DbContext(typeof(ShopAppDbContect))]
-    partial class ShopAppDbContectModelSnapshot : ModelSnapshot
+    [Migration("20220502142423_newRow1")]
+    partial class newRow1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,8 +167,8 @@ namespace ShopAppMerSoftExam.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ChekNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ChekNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("ClientDiscounte")
                         .HasColumnType("int");
@@ -200,9 +202,6 @@ namespace ShopAppMerSoftExam.Core.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SaleId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SalePrice")
                         .HasColumnType("int");
 
@@ -212,8 +211,6 @@ namespace ShopAppMerSoftExam.Core.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("SaleId");
 
                     b.ToTable("SaleItemDb");
                 });
@@ -253,21 +250,13 @@ namespace ShopAppMerSoftExam.Core.Migrations
 
             modelBuilder.Entity("ShopAppMerSoftExam.Core.Entities.SaleItem", b =>
                 {
-                    b.HasOne("ShopAppMerSoftExam.Core.Entities.Product", "Product")
+                    b.HasOne("ShopAppMerSoftExam.Core.Entities.OrderItem", "OrderItem")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShopAppMerSoftExam.Core.Entities.Sale", "Sale")
-                        .WithMany()
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Sale");
+                    b.Navigation("OrderItem");
                 });
 #pragma warning restore 612, 618
         }

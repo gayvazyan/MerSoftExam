@@ -69,7 +69,7 @@ namespace ShopAppMerSoftExam.UI.Pages.Income.OrdersItem
             return Page();
         }
 
-        public string GetProductName(int id)
+        private string GetProductName(int id)
         {
             return _productRepasitory.GetByID(id).Name;
         }

@@ -8,21 +8,26 @@ using System.Threading.Tasks;
 
 namespace ShopAppMerSoftExam.Core.Entities
 {
-    public class OrderItem
+    public class SaleItem
     {
         [Key]
         public int Id { get; set; } 
 
-        public int OrderId { get; set; }
-
-        [ForeignKey(nameof(OrderId))]
-        public virtual Order Order { get; set; }
-
         public int ProductId { get; set; }
+
+        [ForeignKey(nameof(ProductId))]
+        public virtual Product Product { get; set; }
+
+
+        public int SaleId { get; set; }
+
+        [ForeignKey(nameof(SaleId))]
+        public virtual Sale Sale { get; set; }
+
         public int Count { get; set; }
-        public int Price { get; set; }
-        public int Overhead { get; set; }
+
         public int SalePrice { get; set; }
+        public int DiscountedPrice { get; set; }
         public DateTime ValideDate { get; set; }
     }
 }

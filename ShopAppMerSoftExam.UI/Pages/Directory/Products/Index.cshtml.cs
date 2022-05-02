@@ -56,7 +56,7 @@ namespace ShopAppMerSoftExam.UI.Pages.Directory.Products
             return Page();
         }
 
-        public string GetGrupeName(int id)
+        private string GetGrupeName(int id)
         {
             return _grupeRepasitory.GetByID(id).Name;
         }

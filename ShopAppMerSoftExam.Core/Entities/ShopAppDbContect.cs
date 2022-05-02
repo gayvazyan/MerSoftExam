@@ -21,7 +21,9 @@ namespace ShopAppMerSoftExam.Core.Entities
         public DbSet<Order> OrderDb { get; set; }
         public DbSet<OrderItem> OrderItemDb { get; set; }
         public DbSet<Sale> SaleDb { get; set; }
+        public DbSet<SaleItem> SaleItemDb { get; set; }
         
+
 
 
     }

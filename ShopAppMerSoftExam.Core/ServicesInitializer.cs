@@ -28,6 +28,8 @@ namespace ShopAppMerSoftExam.Core
             services.AddTransient<ISaleRepasitory, SaleRepasitory>();
             services.AddTransient<IOrderRepasitory, OrderRepasitory>();
             services.AddTransient<IOrderItemRepasitory, OrderItemRepasitory>();
+            services.AddTransient<ISaleItemRepasitory, SaleItemRepasitory>();
+            
 
         }
     }

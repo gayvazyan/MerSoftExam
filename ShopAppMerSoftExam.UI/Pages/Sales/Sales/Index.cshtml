@@ -1,14 +1,16 @@
 ﻿@page
-@model ShopAppMerSoftExam.UI.Pages.Income.Orders.IndexModel
+@model ShopAppMerSoftExam.UI.Pages.Sales.Sales.IndexModel
+
+
 @{
-    ViewData["Title"] = "Պատվեր";
+    ViewData["Title"] = "Վաճառք";
 }
 
 <form method="post" id="form">
     <div class="card margin-top-20">
         @* ----- START Toolbar ---- *@
         <div class="card-header" style="padding:5px;">
-            <a href="/Income/Orders/Create" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
+            <a href="/Sales/Sales/Create" class="btn btn-success" title="Ավելացնել">  <i class="nav-icon icon-plus"></i> Ավելացնել</a>
         </div>
 
         @* ----- END Toolbar ---- *@
@@ -18,8 +20,9 @@
             <table class="table table-responsive-sm table-striped">
                 <thead>
                     <tr style="text-align:center;color:black">
-                        <td><b>Փաստատթղի N</b></td>
-                        <td><b>Մատակարար</b></td>
+                        <td><b>Կտրոնի N</b></td>
+                        <td><b>Գնորդ</b></td>
+                        <td><b>Գնորդի զեղչ</b></td>
                         <td class="commands"><b>Հրամաններ</b></td>
                     </tr>
                 </thead>
@@ -27,19 +30,20 @@
                     @foreach (var item in Model.InputList)
                     {
                         <tr style="text-align:center;color:black">
-                            <td>@item.Number</td>
-                            <td>@item.Name</td>
+                            <td>@item.ChekNumber</td>
+                            <td>@item.FullName</td>
+                            <td>@item.ClientDiscounte</td>
                             <td style="min-width:200px" class="commands">
 
-                                <a href="/Income/OrdersItem/@item.Id" class="btn btn-primary" title="Ավելացնել">
+                                <a href="/Sales/SalesItem/@item.Id" class="btn btn-primary" title="Ավելացնել">
                                     <i class="nav-icon icon-docs"></i> Ապրանքների ցանկ
                                 </a>
 
-                                <a class="btn btn-info text-white" href="/Income/Orders/Update/@item.Id" title="Թարմացնել">
+                                <a class="btn btn-info text-white" href="/Sales/Sales/Update/@item.Id" title="Թարմացնել">
                                     <i class="nav-icon icon-pencil"></i>
                                 </a>
 
-                                <a class="btn btn-danger" href="/Income/Orders/Delete/@item.Id" title="Հեռացնել">
+                                <a class="btn btn-danger" href="/Sales/Sales/Delete/@item.Id" title="Հեռացնել">
                                     <i class="nav-icon icon-trash"></i>
                                 </a>
                             </td>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopAppMerSoftExam.Core.Entities;
 
 namespace ShopAppMerSoftExam.Core.Migrations
 {
     [DbContext(typeof(ShopAppDbContect))]
-    partial class ShopAppDbContectModelSnapshot : ModelSnapshot
+    [Migration("20220502142626_newRow2")]
+    partial class newRow2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,8 +167,8 @@ namespace ShopAppMerSoftExam.Core.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ChekNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ChekNumber")
+                        .HasColumnType("int");
 
                     b.Property<int>("ClientDiscounte")
                         .HasColumnType("int");

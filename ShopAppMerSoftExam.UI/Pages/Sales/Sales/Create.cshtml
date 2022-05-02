@@ -1,0 +1,76 @@
+﻿@page
+@model ShopAppMerSoftExam.UI.Pages.Sales.Sales.CreateModel
+
+
+@{
+     ViewData["Title"] = "Ավելացնել";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+   @* <input type="hidden" asp-for="@Model." />*@
+        <div class="card card-input">
+            <div class="card-body p-0 d-flex align-items-center">
+                <i class="nav-icon icon-check bg-success p-4 px-5 font-2xl mr-3 text-white"></i>
+                <div>
+                    <div class="text-value-sm text-info">@ViewData["Title"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body row">
+                <div class="m-3 p-3 w-100" style="max-width:900px">
+                    <div>
+                        <partial name="_ValidationSummary" />
+                        @if (Model.Errors.Count > 0)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach (var error in Model.Errors)
+                                    {
+                                        <li>@error.Code: @error.Description</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="text-info" asp-for="Create.ChekNumber">Կտրոն N</label>
+                            <input class="form-control" type="text" asp-for="Create.ChekNumber">
+                            <span asp-validation-for="Create.ChekNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-4">
+                            <label class="text-info" asp-for="Create.ClientId">Գնորդ</label>
+                           <select class="form-control" asp-for="Create.ClientId">
+                                <option value="">-- ընտրել --</option>
+                                @foreach (var item in Model.Clients)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                            </select>
+                        </div>
+                         <div class="col-4">
+                            <label class="text-info" asp-for="Create.ClientDiscounte">Գնորդի զեղչ</label>
+                            <input class="form-control" type="number" asp-for="Create.ClientDiscounte">
+                            <span asp-validation-for="Create.ClientDiscounte" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+
+
+                   
+                  
+
+                    <div style="height:20px"></div>
+                    <div class="row border-top margin-top-20" style="padding-top:20px">
+                        <div class="col-12">
+                            <button class="btn btn-success text-white"> <i class="nav-icon icon-check"></i> Ստեղծել</button>
+                            <a class="btn btn-secondary" asp-page="/Sales/Sales/Index"> <i class="nav-icon icon-close"></i> Չեղարկել</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

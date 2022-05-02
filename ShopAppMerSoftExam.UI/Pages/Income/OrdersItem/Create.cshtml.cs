@@ -38,6 +38,7 @@ namespace ShopAppMerSoftExam.UI.Pages.Income.OrdersItem
         }
         [BindProperty]
         public int OrderId { get; set; }
+
         [BindProperty]
         public CreateOrderItemModel Create { get; set; }
 
@@ -76,7 +77,6 @@ namespace ShopAppMerSoftExam.UI.Pages.Income.OrdersItem
                         ProductId = Create.ProductId,
                         Count = Create.Count,
                         Price = Create.Price,
-                        //Sum = Create.Count* Create.Price,
                         Overhead = Create.Overhead,
                         SalePrice = Create.SalePrice,
                         ValideDate = Create.ValideDate,
